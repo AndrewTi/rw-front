@@ -1,0 +1,33 @@
+.authWrapper {
+   width: 540px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   color: #1A2323;
+}
+
+.auth {
+
+   &__input {
+      border: 2px solid #cfd3de;
+      border-radius: 6px;
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      outline: none;
+      
+      &:focus {
+         border: 2px solid #b7bdf0;
+      }
+
+      &:focus + label {
+         color: #6A75CA;
+      }
+   }
+
+   &__input--error {
+      @extend .auth__input;
+      border: 2px solid #f4d1d7;
+   }
+}

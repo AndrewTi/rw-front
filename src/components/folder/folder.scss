@@ -1,0 +1,68 @@
+
+// more action wrapper on folder 
+
+.moreAction {
+   position: absolute;
+   top: 36px;
+   left: 20px;
+   width: 229px;
+   height: 174px;
+   border-radius: 17px;
+   backdrop-filter: blur(5px);
+   background: rgba(255, 255, 255, 0.507);
+   padding:  40px 65px;
+   transition: .2s ease-in-out;
+ 
+   &__btn {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     cursor: pointer;
+     height: 40px;
+     justify-content: space-between;
+   }
+ }
+
+.moreAction__btnEdit {
+   &:hover > .moreAction__iconEdit {
+      color: green;
+   }
+
+   &:hover > .moreAction__textEdit {
+      color: green;
+   }
+ }
+
+ .moreAction__btnShare {
+   &:hover > .moreAction__iconShare {
+      color:   rgb(1, 103, 255);
+   }
+
+   &:hover > .moreAction__textShare {
+      color:  rgb(1, 103, 255);
+   }
+ }
+
+ .moreAction__btnLoad {
+   &:hover > .moreAction__iconLoad {
+      color: rgb(255, 166, 0);
+   }
+
+   &:hover > .moreAction__textLoad {
+      color:  rgb(255, 166, 0);
+   }
+ }
+
+ .moreAction__btnDelete {
+   &:hover > .moreAction__iconDelete {
+      color: rgb(255, 60, 0);
+   }
+
+   &:hover > .moreAction__textDelete {
+      color:   rgb(255, 60, 0);
+   }
+ }
+
+ .MuiSvgIcon-root.moreAction__icon {
+   transition: .2s ease-in-out;
+ }

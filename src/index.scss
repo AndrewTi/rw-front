@@ -1,0 +1,54 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./pages/homePage/homePage.scss"; 
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+$purple: #6A75CA;
+$dark: #00071a;
+$transition:  .9s ease-in-out;
+
+
+body {
+  // background: #EFF2F8;
+  font-family: 'Poppins', sans-serif;
+}
+
+.moreActionBtn--open {
+  color: $dark;
+  transition: $transition;
+
+  &:hover {
+    color: $purple;
+  }
+}
+
+.moreActionBtn--open-Active {
+  color: #fff;
+}
+
+
+// popups 
+
+.MuiBackdrop-root  {
+  background-color: rgba($color: #9ea2bb, $alpha: .5) !important;
+  backdrop-filter: blur(2px);
+}
+
+.MuiDialog-paper {
+  border-radius: 12px !important;
+  width: 625px;
+}
+
+.dialog .MuiDialogContent-root {
+  &:first-child {
+     padding: 0;
+  }
+}
+.dialog .MuiDialogContent-root {
+  &:nth-child(2){
+     border-radius: 12px !important;
+  }
+}

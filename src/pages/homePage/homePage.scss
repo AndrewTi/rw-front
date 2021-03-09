@@ -1,0 +1,49 @@
+// .btn-indigo {
+//    @apply bg-red-500 py-20;
+// }
+
+.progress-bar {
+   width: 350px;
+   background: #fff;
+   height: 100vh;
+   margin-left: auto;
+   padding-top: 100px;
+   animation: EXPAND-PROGRESSBAR 1s ease-in-out;
+}
+
+.collapse-progress {
+   width: 140px;
+   animation: COLLAPSE-PROGRESSBAR 1s ease-in-out;
+}
+
+.progressBar {
+   background: #EFF2F8;
+   padding: 10px 16px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 20px;
+   border-radius: 8px;
+   font-size: 14px;
+}
+
+.folder-progressBar {
+   width: 60px;
+   height: 60px;
+}
+
+
+@keyframes COLLAPSE-PROGRESSBAR {
+   0% { width: 350px; }
+   100% { width: 140px; }
+}
+
+@keyframes EXPAND-PROGRESSBAR {
+   0% { width: 140px; }
+   100% { width: 350px; }
+}
+
+
+.CircularProgressbar.folder-progressBar {
+   width: 60px;
+}

@@ -1,0 +1,51 @@
+// share collection
+
+.shareType {
+   border: 2px solid #6A75CA;
+   color: #6A75CA;
+   font-size: 14px;
+   padding: 5px 20px;
+   border-radius: 6px;
+   cursor: pointer;
+   transition: .3s ease-in-out;
+   
+   &:hover {
+      background: #eef0ff;
+   }
+}
+
+.shareType--active {
+   @extend .shareType;
+   background: #6A75CA;
+   color: #fff;
+
+   &:hover {
+      background: #6A75CA;
+   }
+}
+
+.selectedEmailsWrapper {
+   input {
+      color: #00071a;
+      font-size: 14px;
+   }
+}
+
+.selectedEmailsWrapper .MuiButtonBase-root {
+   background-color: #eef0ff !important;
+   color: #6A75CA;
+   border-radius: 4px;
+   transition: .2s ease-in-out;
+
+   &:hover {
+      background: #e3e5f8;
+   }
+}
+
+.selectedEmailsWrapper .MuiButtonBase-root .MuiChip-deleteIcon {
+   color: #6A75CA;
+}
+
+// .selectedEmailsWrapper .WAMuiChipInput-focused-22 .MuiButtonBase-root {
+//    background: red;
+// }
