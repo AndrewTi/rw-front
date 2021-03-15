@@ -23,21 +23,6 @@ const mapDispatchToProps = dispatch => ({
 
 
 const WordsPage = (props) => {
-   const [showAllCollections, setShowAllCollections] = React.useState(false);
-   const innerMenu = useRef(null);
-
-   useEffect(() => {
-      function handleClickOutside(event) {
-         if (innerMenu.current && !innerMenu.current.contains(event.target)) {
-            setShowAllCollections(false)
-         }
-      }
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-         document.removeEventListener("mousedown", handleClickOutside);
-      };
-   }, [innerMenu]);
-
 
    return (
       <div className="mx-10 lg:mx-20 mt-10">

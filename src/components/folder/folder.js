@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { connect } from 'react-redux';
+import CircularProgressbarComponent from '../../components/circularProgressbar/circularProgressbar'
 
 //styles
 import './folder.scss'
@@ -131,6 +132,21 @@ const Folder = (props) => {
                         )
                      })}
                   </div>
+               </div>
+            </div>
+         )
+      }
+
+      else if (props.type === "recentlyCollection") {
+         return (
+            <div className="absolute top-0 left-0 w-full h-full py-10 pl-10 pr-12 text-dark flex flex-col justify-between">
+               <div className="mt-2">
+                  <div className="text-sm text-gray">{props.tag}</div>
+                  <div className="text-lg mt-2">{props.name}</div>
+               </div>
+               <div className="flex justify-between items-end py-2">
+                  <CircularProgressbarComponent percentage={props.percentage}/>
+                  <img src={rightBottomArrow} />
                </div>
             </div>
          )
