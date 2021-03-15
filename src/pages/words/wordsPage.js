@@ -1,17 +1,28 @@
 import React, { useEffect, useRef} from 'react'
+import { connect } from 'react-redux';
 import Word from '../../components/word/word'
 
 // styles 
 import './wordsPage.scss';
 
 // icons 
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import deleteIcon from '../../img/ico/deleteIconPopup.svg';
 import closeIcon from '../../img/ico/close.svg';
 
+import { openPopup } from '../../actions/popup';
 
-const WordPage = () => {
+const mapStateToProps = state => ({
+   ...state.popups
+});
+
+const mapDispatchToProps = dispatch => ({
+   openPopup: (payload) => {
+      return dispatch(openPopup(payload));
+   }
+})
+
+
+const WordsPage = (props) => {
    const [showAllCollections, setShowAllCollections] = React.useState(false);
    const innerMenu = useRef(null);
 
@@ -27,46 +38,22 @@ const WordPage = () => {
       };
    }, [innerMenu]);
 
+
    return (
       <div className="mx-10 lg:mx-20 mt-10">
 
       <div className="text-dark font-medium text-2xl mt-10 capitalize">Collection 1</div>
 
-         <div className="flex justify-between text-sm mt-5">
-            <div className="flex items-center text-gray ">
-               <div className="relative" ref={innerMenu}>
-                  <div className="font-bold text-purple mr-7 cursor-pointer" onClick={() => setShowAllCollections(!showAllCollections)}>All<span>{ showAllCollections ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />  }</span></div>
-                  { showAllCollections 
-                  ?
-                  <div className="innerMenu ml-1">
-                     <div className="innerMenu__item">Health</div>
-                     <div className="innerMenu__item">Cinema</div>
-                     <div className="innerMenu__item">Travel</div>
-                  </div>
-                  : null }
-               </div>
-               <div className="mr-7">Shared</div>
-               <div className="mr-7">Class 5a</div>
-            </div>
-            <div className="px-5 py-1.5 bg-orange text-white rounded-md cursor-pointer hover:bg-darkOrange transition ease-in-out duration-300 ">Add Word</div>
+         <div className="flex justify-end text-sm mt-5">
+            <div className="px-5 py-1.5 bg-orange text-white rounded-md cursor-pointer hover:bg-darkOrange transition ease-in-out duration-300" onClick={() => props.openPopup({ currentPopup: "AddWord" })}>Add Word</div>
          </div>
 
          <div className="mt-8 flex flex-wrap">
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
-            <Word />
+            <Word isSelected={false} word="facilitate" translation="сприяти" synonyms={["easy", "lighten", "relieve"]}/>
+            <Word isSelected={false} word="facilitate" translation="сприяти" synonyms={["easy", "lighten", "relieve"]}/>
+            <Word isSelected={false} word="facilitate" translation="сприяти" synonyms={["easy", "lighten", "relieve"]}/>
+            <Word isSelected={false} word="facilitate" translation="сприяти" synonyms={["easy", "lighten", "relieve"]}/>
+            <Word isSelected={false} word="facilitate" translation="сприяти" synonyms={["easy", "lighten", "relieve"]}/>
          </div>
 
          <div className="selectedPopup">
@@ -83,4 +70,7 @@ const WordPage = () => {
    )
 }
 
-export default WordPage
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(WordsPage);

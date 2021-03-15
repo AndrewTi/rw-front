@@ -1,0 +1,25 @@
+.students {
+
+   &__rowHeader {
+      display: grid;
+      grid-template-columns: 70px 300px 300px auto auto;
+      padding: 0 70px;
+   }
+
+   &__row {
+      display: grid;
+      grid-template-columns: 70px 300px 300px minmax(20%, 350px) auto;
+      padding: 16px 70px;
+      border-bottom: 1px solid #e0e1e4;
+      transition: .2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+         background: #f5f6fc;
+      }
+
+      &:last-child {
+         border-bottom: none;
+      }
+   }
+}

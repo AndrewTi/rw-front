@@ -46,6 +46,15 @@
    color: #6A75CA;
 }
 
-// .selectedEmailsWrapper .WAMuiChipInput-focused-22 .MuiButtonBase-root {
-//    background: red;
-// }
+
+// buttons 
+.MuiButtonBase-root {
+   outline: none !important;
+ }
+ 
+ .copyLink {
+   .MuiTouchRipple-root {
+     color: #6A75CA;
+     border-radius: 30px;
+   }
+ }

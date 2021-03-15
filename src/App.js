@@ -17,6 +17,8 @@ import Progress from './components/progress/progress';
 import PracticePage from './pages/practice/practicePage';
 import SupportPage from './pages/support/supportPage';
 import WordsPage from './pages/words/wordsPage';
+import ClassesPage from './pages/classes/classesPage';
+import ClassPage from './pages/class/classPage';
 
 import SignUp from './pages/signUp/signUp';
 import LogIn from './pages/logIn/logIn';
@@ -43,20 +45,22 @@ function App(props) {
   return (
     <Router>
 
-      { isCurrentUser 
+      { true 
       
       ?
 
         <div className="flex dark">
           <Menu />
 
-          <div className="flex-1 relative">
+          <div className="flex-1 relative contentWrapper">
             <Header />
 
             <Switch>
               <Route path="/" exact component={HomePage} />
               <Route path="/collections" component={CollectionsPage} />
               <Route path="/practice" component={PracticePage} />
+              <Route path="/classes" component={ClassesPage} />
+              <Route path="/class" component={ClassPage} />
               <Route path="/support" component={SupportPage} />
               <Route path="/collection1" component={WordsPage} />
               <Route path="/collection2" component={WordsPage} />

@@ -5,6 +5,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 
 import EditCollection from '../popups/editCollection';
 import ShareCollection from '../popups/shareCollection/shareCollection';
+import LoadCollection from '../popups/loadCollection/loadCollection';
+import AddStudent from '../popups/addStudent/addStudent';
+import Student from '../popups/student/student';
+import AddWord from '../popups/addWord/addWord';
 
 // icons
 import closeIcon from '../../img/ico/closeIcon.svg'
@@ -32,7 +36,11 @@ const Popup = (props) => {
    
    const map = {
       "EditCollection": EditCollection,
-      "ShareCollection": ShareCollection
+      "ShareCollection": ShareCollection,
+      "LoadCollection": LoadCollection,
+      "AddStudent": AddStudent,
+      "Student": Student,
+      "AddWord": AddWord,
     }
 
 

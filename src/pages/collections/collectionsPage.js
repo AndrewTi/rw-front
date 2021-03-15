@@ -1,17 +1,15 @@
 import React, { useRef, useEffect } from 'react'
+import { NavLink } from "react-router-dom";
 import Folder from '../../components/folder/folder';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import './collectionsPage.scss';
 
 import { useLocation } from 'react-router-dom'
-
 
 // icons 
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
-
-// images
-import rightBottomArrow from '../../img/ico/right-bottom-arrow.svg'
 
 const CollectionsPage = () => {
   const location = useLocation();
@@ -19,8 +17,6 @@ const CollectionsPage = () => {
   useEffect( ()=> {
    console.log(location.pathname)
  })
-
-
 
    const [showAllCollections, setShowAllCollections] = React.useState(false);
    const innerMenu = useRef(null);
@@ -54,24 +50,21 @@ const CollectionsPage = () => {
                </div>
                <div className="mr-7">Shared</div>
                <div className="mr-7">Class 5a</div>
-               <div className="px-5 py-1.5 bg-darkPurple text-white rounded-md cursor-pointer transition hover:bg-hoverPurple">Add Tag</div>
+               <ButtonBase><div className="px-5 py-1.5 bg-darkPurple text-white rounded-md cursor-pointer transition hover:bg-hoverPurple">Add Tag</div></ButtonBase>
             </div>
-            <div className="px-5 py-1.5 bg-orange text-white rounded-md cursor-pointer hover:bg-darkOrange transition ease-in-out duration-300 ">Create Collections</div>
+            <ButtonBase><div className="px-5 py-1.5 bg-orange text-white rounded-md cursor-pointer hover:bg-darkOrange transition ease-in-out duration-300">Create Collection</div></ButtonBase>
          </div>
 
-         {/* folders */}
          <div className="mx-5 lg:mx-14 mt-5 flex flex-wrap">
 
-           <Folder/>
-           <Folder/>
-           <Folder/>
-           <Folder/>
-           <Folder/>
-           <Folder/>
-           <Folder/>
-           <Folder/>
+         <NavLink to="/collection1">
+            <Folder name="collection 1" type="collection" date="Apr 10, 2020" words="14" learned="10" repeat="2" tags={["health", "diseases"]} count="17 students" />
+         </NavLink>
 
-            
+         <NavLink to="/collection1">
+            <Folder name="collection 1" type="collection" date="Apr 10, 2020" words="14" learned="10" repeat="2" tags={["health", "diseases"]} count="17 students" />
+         </NavLink>
+
 
          </div>
 

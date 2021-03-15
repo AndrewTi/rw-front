@@ -23,6 +23,7 @@ const Menu = () => {
 
    return (
       <div className="bg-white menu__wrapper">
+         <div className="h-full py-20 fixed w-52 flex flex-col">
          <div>
             <NavLink to="/">
                <img className="px-10" src={logo} />
@@ -50,6 +51,13 @@ const Menu = () => {
                   <div className="flex my-5">
                      <img src={practiceIcon} />
                      <div className="ml-4">practice</div>
+                  </div>
+               </NavLink>
+
+               <NavLink to="/classes" activeClassName="menuItem--active" >
+                  <div className="flex my-5">
+                     <img src={practiceIcon} />
+                     <div className="ml-4">Classes</div>
                   </div>
                </NavLink>
 
@@ -85,13 +93,13 @@ const Menu = () => {
             </div>
          </div>
 
-         <div className="flex mx-10 justify-between">
+         <div className="flex mx-10 justify-between mt-auto">
             <img src={instagramIcon} />
             <img src={facebookIcon} />
             <img src={twitterIcon} />
          </div>
 
-
+</div>
       </div>
    )
 }
