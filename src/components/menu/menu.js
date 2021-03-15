@@ -23,7 +23,7 @@ const Menu = () => {
 
    return (
       <div className="bg-white menu__wrapper">
-         <div className="h-full py-20 fixed w-52 flex flex-col">
+         <div className="h-full pt-12 pb-20 fixed w-52 flex flex-col">
          <div>
             <NavLink to="/">
                <img className="px-10" src={logo} />
