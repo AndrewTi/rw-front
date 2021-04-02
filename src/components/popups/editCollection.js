@@ -4,12 +4,19 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 // icons 
 import deleteTag from '../../img/ico/deleteTag.svg'
 
-const EditCollection = (props) => {
+const EditCollection = () => {
 
-   const [tags, setTags] =React.useState(["tag1", "tag2", "tag3", "tag4", "tag5"]);
+   const [tags, setTags] = React.useState(["tag1", "tag2", "tag3", "tag4", "tag5"]);
 
    const onTagDelete = (tag) => {
       setTags([...tags.filter(x => x !== tag)])
+   }
+
+   const handleKeyDown = (e) => {
+      if (e.key === 'Enter' && e.target.value != "") {
+         setTags([...tags, e.target.value])
+         e.target.value = ''
+       }
    }
 
    return (
@@ -17,16 +24,16 @@ const EditCollection = (props) => {
          <div className="text-dark text-lg font-medium text-center">Edit collection</div>
          <div className="flex flex-col mt-3">
             <label className="text-gray font-light text-sm">Name</label>
-            <input className="border-lightGray border rounded-lg py-1.5 px-2 text-dark font-light mt-1 outline-none focus:border-lightPurple"></input>
+            <input type="text" className="border-lightGray border rounded-lg py-1.5 px-2 text-dark font-light mt-1 outline-none focus:border-lightPurple"></input>
          </div>
 
          <div className="flex flex-col mt-3">
             <label className="text-gray font-light text-sm">Tags</label>
-            <input className="border-lightGray border rounded-lg py-1.5 px-2 text-dark font-light mt-1 outline-none focus:border-lightPurple"></input>
+            <input type="text" className="border-lightGray border rounded-lg py-1.5 px-2 text-dark font-light mt-1 outline-none focus:border-lightPurple" onKeyDown={(e) => handleKeyDown(e)}></input>
          </div>
 
 
-         <div className="flex mt-2 mb-4">
+         <div className="flex mt-2 mb-4 flex-wrap">
 
          {tags.map(tag => {
             return (
@@ -42,6 +49,7 @@ const EditCollection = (props) => {
          <div className="mx-auto w-min rounded-lg overflow-hidden">
             <ButtonBase><div className="mx-auto bg-darkPurple text-sm text-white py-2 px-7 w-max rounded-md cursor-pointer hover:bg-hoverPurple transition">Save</div></ButtonBase>
          </div>
+
       </section>
    )
 }

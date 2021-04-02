@@ -2,14 +2,15 @@
    &__selectCollection {
       border: 2px solid #6A75CA;
       color: #6A75CA;
-      font-size: 14px;
+      font-size: 12px;
       padding: 5px 18px;
       border-radius: 6px;
       cursor: pointer;
       transition: .3s ease-in-out;
-      width: fit-content;
       margin: 4px;
-      
+      flex: 1;
+      text-align: center;
+
       &:hover {
          background: #eef0ff;
       }  
@@ -37,6 +38,7 @@
       transition: .3s ease-in-out;
       margin: 10px;
       border: 2px solid #6A75CA;
+      flex: 1;
    }
 
    &__formatCollection--active {

@@ -9,6 +9,10 @@ import LoadCollection from '../popups/loadCollection/loadCollection';
 import AddStudent from '../popups/addStudent/addStudent';
 import Student from '../popups/student/student';
 import AddWord from '../popups/addWord/addWord';
+import CreateCollection from '../popups/createCollection/createCollection';
+import AddTag from '../popups/addTag';
+import Request from '../popups/request/request'; 
+import CreateRequest from '../popups/createRequest/createRequest';
 
 // icons
 import closeIcon from '../../img/ico/closeIcon.svg'
@@ -41,6 +45,10 @@ const Popup = (props) => {
       "AddStudent": AddStudent,
       "Student": Student,
       "AddWord": AddWord,
+      "CreateCollection": CreateCollection,
+      'AddTag': AddTag,
+      'Request': Request,
+      'CreateRequest': CreateRequest,
     }
 
 
@@ -57,7 +65,7 @@ const Popup = (props) => {
       >
          <DialogContent className="dialog">
             <img src={closeIcon} alt="" onClick={handleClose} className='absolute top-6 right-6 cursor-pointer'/>
-            <CurrentPopup />
+            <CurrentPopup info={props.info}/>
          </DialogContent>
 
       </Dialog>

@@ -12,6 +12,7 @@ import collectionsIcon from '../../img/ico/collections.svg'
 import practiceIcon from '../../img/ico/practice.svg'
 import supportIcon from '../../img/ico/support.svg'
 import folderIcon from '../../img/ico/folderIcon.svg';
+import studentIcon from '../../img/ico/student.svg';
 
 import instagramIcon from '../../img/ico/instagram.svg'
 import facebookIcon from '../../img/ico/facebook.svg'
@@ -56,7 +57,7 @@ const Menu = () => {
 
                <NavLink to="/classes" activeClassName="menuItem--active" >
                   <div className="flex my-5">
-                     <img src={practiceIcon} />
+                     <img src={studentIcon} />
                      <div className="ml-4">Classes</div>
                   </div>
                </NavLink>

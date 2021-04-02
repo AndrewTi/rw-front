@@ -15,7 +15,7 @@ import HomePage from './pages/homePage/homePage';
 import CollectionsPage from './pages/collections/collectionsPage.js';
 import Progress from './components/progress/progress';
 import PracticePage from './pages/practice/practicePage';
-import SupportPage from './pages/support/supportPage';
+import SupportPage from './pages/supportPage/supportPage';
 import WordsPage from './pages/words/wordsPage';
 import ClassesPage from './pages/classes/classesPage';
 import ClassPage from './pages/class/classPage';

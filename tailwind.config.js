@@ -22,6 +22,7 @@ module.exports = {
       'errorRed': '#e63946',
       'darkBlue': '#364165',
       'numberGray': '#b3b5ba',
+      'red': '#CD2626'
     },
     backgroundColor: {
       'lightPurple': '#EFF2F8',
@@ -50,7 +51,11 @@ module.exports = {
     }, 
     fill: {
       'darkPurple': '#6A75CA'
-    }
+    },
+    placeholderColor: theme => theme('colors'),
+     placeholderColor: {
+       'gray': '#d2d6dd',
+     }
   },
   variants: {
     extend: {},

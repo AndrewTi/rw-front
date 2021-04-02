@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react'
+import { connect } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import Folder from '../../components/folder/folder';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -11,7 +12,15 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
 
-const CollectionsPage = () => {
+import { openPopup } from '../../actions/popup';
+const mapDispatchToProps = dispatch => ({
+   openPopup: (payload) => {
+      return dispatch(openPopup(payload));
+   }
+})
+
+
+const CollectionsPage = (props) => {
   const location = useLocation();
 
   useEffect( ()=> {
@@ -50,9 +59,9 @@ const CollectionsPage = () => {
                </div>
                <div className="mr-7">Shared</div>
                <div className="mr-7">Class 5a</div>
-               <ButtonBase><div className="px-5 py-1.5 bg-darkPurple text-white rounded-md cursor-pointer transition hover:bg-hoverPurple">Add Tag</div></ButtonBase>
+               <ButtonBase onClick={() => props.openPopup({ currentPopup: 'AddTag' })}><div className="px-5 py-1.5 bg-darkPurple text-white rounded-md cursor-pointer transition hover:bg-hoverPurple">Add Tag</div></ButtonBase>
             </div>
-            <ButtonBase><div className="px-5 py-1.5 bg-orange text-white rounded-md cursor-pointer hover:bg-darkOrange transition ease-in-out duration-300">Create Collection</div></ButtonBase>
+            <ButtonBase onClick={() => props.openPopup({ currentPopup: 'CreateCollection' })}><div className="px-5 py-1.5 bg-orange text-white rounded-md cursor-pointer hover:bg-darkOrange transition ease-in-out duration-300">Create Collection</div></ButtonBase>
          </div>
 
          <div className="mx-5 lg:mx-14 mt-5 flex flex-wrap">
@@ -74,4 +83,7 @@ const CollectionsPage = () => {
    )
 }
 
-export default CollectionsPage;
+export default connect(
+   null,
+   mapDispatchToProps
+)(CollectionsPage);

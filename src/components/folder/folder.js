@@ -13,6 +13,7 @@ import ScreenShareOutlinedIcon from '@material-ui/icons/ScreenShareOutlined';
 import SystemUpdateAltOutlinedIcon from '@material-ui/icons/SystemUpdateAltOutlined';
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
 import rightBottomArrow from '../../img/ico/right-bottom-arrow.svg'
+import attachFile from '../../img/ico/attachFile.svg';
 
 import { openPopup } from '../../actions/popup';
 const mapStateToProps = state => ({
@@ -33,8 +34,6 @@ const Folder = (props) => {
 
    useEffect(() => {
       function handleClickOutside(event) {
-         event.preventDefault();
-         event.stopPropagation();
 
          if (moreActionMenu.current && !moreActionMenu.current.contains(event.target)) {
             setMoreAction(false)
@@ -56,13 +55,6 @@ const Folder = (props) => {
       e.stopPropagation();
       e.preventDefault();
       setMoreAction(false)
-   }
-
-   const openPupupp = (event, currentPopup) => {
-      event.preventDefault();
-      return (
-         props.openPopup({ currentPopup: currentPopup })
-      )
    }
 
    const showFolderContent = () => {
@@ -151,6 +143,21 @@ const Folder = (props) => {
             </div>
          )
       }
+
+      else if (props.type === 'support') {
+         return (
+            <div className="absolute top-0 left-0 w-full h-full py-10 pl-10 pr-12 text-dark flex flex-col justify-between">
+               <div>
+                  <div className="text-xs text-gray">{props.date}</div>
+                  <div className="text-lg font-medium mt-2">{props.name}</div>
+                  <div className="text-xs mt-2">{props.shortDesc}</div>
+               </div>
+               <div className="mb-2">
+                 <img src={attachFile} />
+               </div>
+            </div>
+         )
+      }
    }
 
    return (
@@ -179,17 +186,17 @@ const Folder = (props) => {
             <div className="moreAction cursor-default text-dark" ref={moreActionMenu} onClick={(e) => e.preventDefault()}>
                <div className="absolute top-3 right-2 cursor-pointer" onClick={(e) => closeMoreAction(e)}><CloseRoundedIcon /></div>
                <div className="flex justify-between">
-                  <div className="moreAction__btn moreAction__btnEdit" onClick={(event) => openPupupp(event, 'EditCollection')}>
+                  <div className="moreAction__btn moreAction__btnEdit" onClick={() => props.openPopup({currentPopup: 'EditCollection'})}>
                      <EditOutlinedIcon className="moreAction__icon moreAction__iconEdit" />
                      <div className="moreAction__textEdit text-xs transition">Edit</div>
                   </div>
-                  <div className="moreAction__btn moreAction__btnShare" onClick={(event) => openPupupp(event, 'ShareCollection')}>
+                  <div className="moreAction__btn moreAction__btnShare" onClick={() => props.openPopup({currentPopup: 'ShareCollection'})}>
                      <ScreenShareOutlinedIcon className="moreAction__icon moreAction__iconShare" />
                      <div className="moreAction__textShare text-xs transition">Share</div>
                   </div>
                </div>
                <div className="flex justify-between mt-5">
-                  <div className="moreAction__btn moreAction__btnLoad" onClick={(event) => openPupupp(event, 'LoadCollection')}>
+                  <div className="moreAction__btn moreAction__btnLoad" onClick={() => props.openPopup({currentPopup: 'LoadCollection'})}>
                      <SystemUpdateAltOutlinedIcon className="moreAction__icon moreAction__iconLoad" />
                      <div className="moreAction__textLoad text-xs transition">Load</div>
                   </div>
