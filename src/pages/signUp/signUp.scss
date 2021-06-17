@@ -10,24 +10,88 @@
 .auth {
 
    &__input {
-      border: 2px solid #cfd3de;
-      border-radius: 6px;
+      background: #FFFFFF;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.12);
+      border-radius: 12px;
       width: 100%;
-      padding: 10px;
+      padding: 12px 10px;
       margin-top: 8px;
       outline: none;
+      border: 2px solid #FFFFFF;;
       
       &:focus {
          border: 2px solid #b7bdf0;
       }
 
       &:focus + label {
-         color: #6A75CA;
+         color: #6a75ca;
       }
    }
 
    &__input--error {
       @extend .auth__input;
-      border: 2px solid #f4d1d7;
+      border: 2px solid #f5b0b5;
+   }
+
+   &__formAgreement {
+      font-size: 13px;
+      color: #6a75ca;
+      margin-top: 16px;
+      position: relative;
+      display: flex;
+      cursor: pointer;
+   }
+
+   &__formAgreementLabel {
+      padding-left: 8px;
+      cursor: pointer;
+      color: #868995;
+
+      a {
+         color: #6a75ca;
+      }
+   }
+
+   &__checkbox {
+      opacity: 0;
+
+      &:checked ~ .auth__checkboxCustom {
+         background: #6a75ca;
+         border: 2px solid #6a75ca;
+         
+         &:after {
+            content: "✓";
+            color: #fff;
+            font-size: 12px;
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+         }
+      }
+   }
+
+   &__checkboxCustom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      border:  2px solid #6a75ca93;
+      border-radius: 4px;
+      pointer-events: none;
+   }
+
+   &__textError {
+      width: 100%;
+      color: #E63946;
+      position: absolute;
+      text-align: right;
+      bottom: -25px;
+      font-size: 13px;
+   }
+
+   &__agreementErrorText {
+      text-align: left;
    }
 }

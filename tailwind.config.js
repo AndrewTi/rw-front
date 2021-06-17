@@ -22,7 +22,8 @@ module.exports = {
       'errorRed': '#e63946',
       'darkBlue': '#364165',
       'numberGray': '#b3b5ba',
-      'red': '#CD2626'
+      'red': '#CD2626',
+      'redError': '#e63946'
     },
     backgroundColor: {
       'lightPurple': '#EFF2F8',

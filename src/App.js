@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 // import { useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 import './App.css'
 
@@ -19,36 +20,65 @@ import SupportPage from './pages/supportPage/supportPage';
 import WordsPage from './pages/words/wordsPage';
 import ClassesPage from './pages/classes/classesPage';
 import ClassPage from './pages/class/classPage';
+import ChooseRole from './pages/chooseRole/chooseRole';
 
 import SignUp from './pages/signUp/signUp';
 import LogIn from './pages/logIn/logIn';
 
+import {getUser} from './service/requests';
 
 //styles 
 import './index.scss';
+
+import { currentUser } from './actions/currentUser';
 
 const mapStateToProps = state => ({
   ...state.currentUser
 });
 
+const mapDispatchToProps = dispatch => ({
+  currentUser: (payload) => {
+     return dispatch(currentUser(payload));
+  }
+})
 
 function App(props) {
 
-  const [isCurrentUser, setIsCurrentUser] = React.useState(false)
 
-  useEffect(() => {
-    if (Object.entries(props.user).length != 0) {
-      setIsCurrentUser(true)
-    }
-   }, [props.user]);
+  const [authChecked, setAuthChecked] = React.useState(false);
+   const history = useHistory();
+
+   
+    useEffect(async() => {
+
+
+      const token = localStorage.getItem("accessToken");
+      if (token != null) {
+        const resp = await getUser().catch(console.log);
+  
+        if(!resp) {
+          localStorage.removeItem("accessToken");
+          history.push("/login");
+          return setAuthChecked(false);
+        } 
+        
+          props.currentUser({ user: resp.data.user });
+          setAuthChecked(true);
+  
+
+      }else {
+        history.push("/signUp");
+        setAuthChecked(false);
+      }
+    }, [props.user])
+
 
   return (
-    <Router>
+    <>
 
-      { true 
-      
-      ?
 
+      {authChecked ?
+      <Suspense>
         <div className="flex dark">
           <Menu />
 
@@ -65,34 +95,34 @@ function App(props) {
               <Route path="/collection1" component={WordsPage} />
               <Route path="/collection2" component={WordsPage} />
               <Route path="/collection3" component={WordsPage} />
-
-              <Redirect to="/" exact />
+              {/* <Redirect to="/" exact /> */}
             </Switch>
 
             <Popup />
-
           </div>
-
-          {/* <Progress /> */}
-
         </div>
+        </Suspense>
+
 
         :
+        <Suspense>
 
         <Switch>
           <Route path="/signUp" component={SignUp} />
           <Route path="/logIn" component={LogIn} />
-          <Redirect to="/signUp" />
+          <Route path="/chooseRole" component={ChooseRole} />
+          {/* <Redirect to="/signUp" /> */}
         </Switch>
+        </Suspense>
       }
 
 
-    </Router>
+    </>
   );
 }
 
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(App);
