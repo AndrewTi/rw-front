@@ -15,6 +15,8 @@ import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
 import rightBottomArrow from '../../img/ico/right-bottom-arrow.svg'
 import attachFile from '../../img/ico/attachFile.svg';
 
+import folderTag from '../../img/folderTag.svg';
+
 import { openPopup } from '../../actions/popup';
 const mapStateToProps = state => ({
    ...state.popups
@@ -29,7 +31,6 @@ const mapDispatchToProps = dispatch => ({
 
 const Folder = (props) => {
    const [moreAction, setMoreAction] = React.useState(false);
-   const [folderHover, setFolderHover] = React.useState(false)
    const moreActionMenu = useRef(null);
 
    useEffect(() => {
@@ -60,8 +61,8 @@ const Folder = (props) => {
    const showFolderContent = () => {
       if (props.type === "class") {
          return (
-            <div className="absolute top-0 left-0 w-full h-full py-10 pl-10 pr-12 text-dark flex flex-col justify-between">
-               <div className="absolute top-12 right-8" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
+            <div className="text-dark flex flex-col justify-between h-36">
+               <div className="absolute top-4 right-2" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
                <div className="text-lg mt-2">{props.name}</div>
                <div className="flex justify-between">
                   <div className="text-sm text-gray font-light">{props.students} students</div>
@@ -73,8 +74,8 @@ const Folder = (props) => {
 
       else if (props.type === "classCollection") {
          return (
-            <div className="absolute top-0 left-0 w-full h-full py-10 pl-10 pr-12 text-dark flex flex-col justify-between">
-               <div className="absolute top-12 right-8" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
+            <div className="text-dark flex flex-col justify-between h-36">
+               <div className="absolute top-4 right-2" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
                <div>
                   <div className="text-xs text-gray">{props.date}</div>
                   <div className="text-lg mt-2">{props.name}</div>
@@ -90,14 +91,14 @@ const Folder = (props) => {
       else if (props.type === "collection") {
 
          return (
-            <div className="absolute top-0 left-0 w-full h-full py-10 pl-10 pr-12 text-dark flex flex-col justify-between">
-               <div className="absolute top-12 right-8" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
+            <div className="text-dark flex flex-col justify-between">
+               <div className="absolute top-4 right-2" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
                <div>
                   <div className="text-xs text-gray">{props.date}</div>
                   <div className="text-lg mt-2">{props.name}</div>
                </div>
 
-               <div className="flex justify-between mt-2">
+               <div className="flex justify-between mt-2 opacity-40">
                   <div className="flex-column text-center">
                      <div className="text-lg">{props.words}</div>
                      <div className="text-sm text-gray font-light">words</div>
@@ -131,12 +132,12 @@ const Folder = (props) => {
 
       else if (props.type === "recentlyCollection") {
          return (
-            <div className="absolute top-0 left-0 w-full h-full py-10 pl-10 pr-12 text-dark flex flex-col justify-between">
+            <div className="text-dark flex flex-col justify-between">
                <div className="mt-2">
                   <div className="text-sm text-gray">{props.tag}</div>
                   <div className="text-lg mt-2">{props.name}</div>
                </div>
-               <div className="flex justify-between items-end py-2">
+               <div className="flex justify-between items-end py-2 mt-2">
                   <CircularProgressbarComponent percentage={props.percentage}/>
                   <img src={rightBottomArrow} />
                </div>
@@ -146,7 +147,7 @@ const Folder = (props) => {
 
       else if (props.type === 'support') {
          return (
-            <div className="absolute top-0 left-0 w-full h-full py-10 pl-10 pr-12 text-dark flex flex-col justify-between">
+            <div className="text-dark flex flex-col justify-between  h-36">
                <div>
                   <div className="text-xs text-gray">{props.date}</div>
                   <div className="text-lg font-medium mt-2">{props.name}</div>
@@ -161,23 +162,8 @@ const Folder = (props) => {
    }
 
    return (
-      <div className="relative cursor-pointer w-max" onMouseEnter={() => setFolderHover(true)} onMouseLeave={() => setFolderHover(false)}>
-         <svg width="277" height="237" viewBox="0 0 277 237" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_d)">
-               <path d="M20 192V37C20 27.6112 27.6112 20 37 20H103.275C107.595 20 111.754 21.645 114.905 24.6007L121.595 30.8757C124.746 33.8314 128.905 35.4764 133.225 35.4764H232C241.389 35.4764 249 43.0876 249 52.4764V192C249 201.389 241.389 209 232 209H37C27.6112 209 20 201.389 20 192Z" fill="white" stroke={folderHover ? "#6A75CA" : "none"} stroke-width="1.5" />
-            </g>
-            <defs>
-               <filter id="filter0_d" x="0" y="0" width="277" height="237" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                  <feOffset dx="4" dy="4" />
-                  <feGaussianBlur stdDeviation="12" />
-                  <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0.027451 0 0 0 0 0.101961 0 0 0 0.18 0" />
-                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-               </filter>
-            </defs>
-         </svg>
+      <div className="folder">
+         <img src={folderTag} className="folder__tag" />
 
          {showFolderContent()}
 

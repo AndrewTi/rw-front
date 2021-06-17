@@ -21,11 +21,6 @@ const mapDispatchToProps = dispatch => ({
 
 
 const CollectionsPage = (props) => {
-  const location = useLocation();
-
-  useEffect( ()=> {
-   console.log(location.pathname)
- })
 
    const [showAllCollections, setShowAllCollections] = React.useState(false);
    const innerMenu = useRef(null);

@@ -18,7 +18,7 @@ const SupportPage = (props) => {
    ]
    return (
       <div>
-         <div className="flex justify-between mx-10 lg:mx-20 mt-10">
+         <div className="flex justify-between mx-10 lg:mx-20 mt-12">
             <div className="text-dark font-medium text-2xl">All Requests</div>
             <ButtonBase onClick={() => props.openPopup({ currentPopup: 'CreateRequest' })}><div className="px-5 py-1.5 bg-darkPurple text-white rounded-md cursor-pointer transition hover:bg-hoverPurple">Create a Request</div></ButtonBase>
          </div>
