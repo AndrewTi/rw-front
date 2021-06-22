@@ -61,3 +61,24 @@ body {
 .MuiTouchRipple-root {
   color: rgba(255, 255, 255, 0.788);
 }
+
+// common styles
+
+.popupInput {
+  border: 1px solid #e0e1e4;
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: #00071a;
+  font-weight: 300;
+  margin-top: 5px;
+  outline: none;
+
+  &:focus {
+    border: 1px solid #bac0e6;
+  }
+}
+
+.popupInput--error {
+  @extend .popupInput;
+  border: 1px  solid #f5b0b5;
+}

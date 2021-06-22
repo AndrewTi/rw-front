@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { connect } from 'react-redux';
 import CircularProgressbarComponent from '../../components/circularProgressbar/circularProgressbar'
+import moment from 'moment';
+import { deleteCollectionReq } from '../../service/requests';
 
 //styles
 import './folder.scss'
@@ -18,6 +20,7 @@ import attachFile from '../../img/ico/attachFile.svg';
 import folderTag from '../../img/folderTag.svg';
 
 import { openPopup } from '../../actions/popup';
+import { deleteCollection } from '../../actions/collections';
 const mapStateToProps = state => ({
    ...state.popups
 });
@@ -25,11 +28,20 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
    openPopup: (payload) => {
       return dispatch(openPopup(payload));
-   }
+   },
+   deleteCollection: (payload) => {
+      return dispatch(deleteCollection(payload));
+   },
 })
 
 
 const Folder = (props) => {
+   const { 
+      collection, 
+      type,
+      deleteCollection
+    } = props;
+
    const [moreAction, setMoreAction] = React.useState(false);
    const moreActionMenu = useRef(null);
 
@@ -59,11 +71,11 @@ const Folder = (props) => {
    }
 
    const showFolderContent = () => {
-      if (props.type === "class") {
+      if (type === "class") {
          return (
             <div className="text-dark flex flex-col justify-between h-36">
                <div className="absolute top-4 right-2" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
-               <div className="text-lg mt-2">{props.name}</div>
+               <div className="text-lg mt-2">{collection.name}</div>
                <div className="flex justify-between">
                   <div className="text-sm text-gray font-light">{props.students} students</div>
                   <img src={rightBottomArrow} />
@@ -72,45 +84,45 @@ const Folder = (props) => {
          )
       }
 
-      else if (props.type === "classCollection") {
+      else if (type === "classCollection") {
          return (
             <div className="text-dark flex flex-col justify-between h-36">
                <div className="absolute top-4 right-2" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
                <div>
-                  <div className="text-xs text-gray">{props.date}</div>
-                  <div className="text-lg mt-2">{props.name}</div>
+                  <div className="text-xs text-gray">{collection.updatedAt}</div>
+                  <div className="text-lg mt-2">{collection.name}</div>
                </div>
                <div className="flex justify-between">
-                  <div className="text-sm text-gray font-light">{props.words} words</div>
+                  <div className="text-sm text-gray font-light">{collection.words} words</div>
                   <img src={rightBottomArrow} />
                </div>
             </div>
          )
       }
 
-      else if (props.type === "collection") {
+      else if (type === "collection") {
 
          return (
             <div className="text-dark flex flex-col justify-between">
                <div className="absolute top-4 right-2" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
                <div>
-                  <div className="text-xs text-gray">{props.date}</div>
-                  <div className="text-lg mt-2">{props.name}</div>
+                  <div className="text-xs text-gray">{moment(collection.updatedAt).format("DD MMM yyy")} </div>
+                  <div className="text-lg mt-2">{collection.name}</div>
                </div>
 
                <div className="flex justify-between mt-2 opacity-40">
                   <div className="flex-column text-center">
-                     <div className="text-lg">{props.words}</div>
+                     <div className="text-lg">{collection.words.length}</div>
                      <div className="text-sm text-gray font-light">words</div>
                   </div>
 
                   <div className="flex-column text-center">
-                     <div className="text-lg">{props.learned}</div>
+                     <div className="text-lg">6</div>
                      <div className="text-sm text-gray font-light">Learned</div>
                   </div>
 
                   <div className="flex-column text-center">
-                     <div className="text-lg">{props.repeat}</div>
+                     <div className="text-lg">10</div>
                      <div className="text-sm text-gray font-light">Repeat</div>
                   </div>
                </div>
@@ -119,33 +131,36 @@ const Folder = (props) => {
 
                   <hr className="border-t-1 border-lightGray mt-3" />
                      <div className="flex mt-2.5">
-                     {props.tags.map(tag => {
-                        return(
-                           <div className="bg-darkPurple px-3 py-1 text-white capitalize text-xs rounded-full mr-1.5">{tag}</div>
-                        )
-                     })}
+                        {collection.tags.length > 0 
+                        ? collection.tags.map(tag => {
+                           return(
+                              <div className="bg-darkPurple px-3 py-1 text-white capitalize text-xs rounded-full mr-1.5">{tag.name}</div>
+                              )
+                           })
+                        : <div className="bg-lightGray px-3 py-1 text-white capitalize text-xs rounded-full mr-1.5">no tags</div>
+                        }
                   </div>
                </div>
             </div>
          )
       }
 
-      else if (props.type === "recentlyCollection") {
+      else if (type === "recentlyCollection") {
          return (
             <div className="text-dark flex flex-col justify-between">
                <div className="mt-2">
                   <div className="text-sm text-gray">{props.tag}</div>
-                  <div className="text-lg mt-2">{props.name}</div>
+                  <div className="text-lg mt-2">{collection.name}</div>
                </div>
                <div className="flex justify-between items-end py-2 mt-2">
-                  <CircularProgressbarComponent percentage={props.percentage}/>
+                  <CircularProgressbarComponent percentage="30"/>
                   <img src={rightBottomArrow} />
                </div>
             </div>
          )
       }
 
-      else if (props.type === 'support') {
+      else if (type === 'support') {
          return (
             <div className="text-dark flex flex-col justify-between  h-36">
                <div>
@@ -159,6 +174,17 @@ const Folder = (props) => {
             </div>
          )
       }
+   }
+
+   const onDeleteCollection = async () => {
+      try {
+         await deleteCollectionReq(collection._id)
+         deleteCollection({ collection: collection._id })
+      }
+      catch (error) {
+         console.log(error)
+      }
+      setMoreAction(false)
    }
 
    return (
@@ -186,7 +212,7 @@ const Folder = (props) => {
                      <SystemUpdateAltOutlinedIcon className="moreAction__icon moreAction__iconLoad" />
                      <div className="moreAction__textLoad text-xs transition">Load</div>
                   </div>
-                  <div className="moreAction__btn moreAction__btnDelete">
+                  <div className="moreAction__btn moreAction__btnDelete" onClick={onDeleteCollection}>
                      <DeleteOutlineRoundedIcon className="moreAction__icon moreAction__iconDelete" />
                      <div className="moreAction__textDelete text-xs transition">Delete</div>
                   </div>

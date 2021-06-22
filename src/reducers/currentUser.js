@@ -3,7 +3,7 @@ import {
 } from '../actions';
 
 export default ( state = {
-   user: {},
+   user: null,
 }, action) => {
 
    const {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { loginUser } from '../../service/requests';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import {getUser, getCollections} from '../../service/requests';
 
 
 import '../signUp/signUp.scss'
@@ -17,9 +18,8 @@ import Switch from '@material-ui/core/Switch';
 // animated logo
 import logo from '../../img/logorwAnimated.svg';
 
-import {
-   currentUser
-} from '../../actions/currentUser';
+import { currentUser } from '../../actions/currentUser';
+import { setCollections } from '../../actions/collections';
 
 const mapStateToProps = state => ({
    ...state.currentUser
@@ -28,11 +28,19 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
    currentUser: (payload) => {
       return dispatch(currentUser(payload));
+   },
+   setCollections: (payload) => {
+      return dispatch(setCollections(payload));
    }
 })
 
 
 const LogIn = (props) => {
+
+   const {
+      currentUser,
+      setCollections
+   } = props;
 
    const [userData, setUserData] = useState({
       email: '',
@@ -90,11 +98,35 @@ const LogIn = (props) => {
          console.log(err);
       });
 
-      if(!res)
-         return
-         
+      if(!res) {
+         return;
+      }
+
          localStorage.setItem("accessToken", res.data.token);
-         props.currentUser({ user: {} });
+
+         const resp = await getUser().catch(console.log);
+  
+         if(!resp) {
+            // set error
+            localStorage.removeItem("accessToken");
+            history.push("/login");
+            return;
+         } 
+        
+         currentUser({ user: resp.data.user });
+
+         const loadCollections = async () => {
+            try {
+              const res = await getCollections();
+              setCollections({ collections: res.data.collections })
+            }
+      
+            catch (error) {
+              console.log(error)
+            }
+          }
+
+         loadCollections();
          history.push("/");
        }
    }

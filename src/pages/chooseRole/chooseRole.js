@@ -3,6 +3,7 @@ import './chooseRole.scss'
 import { connect } from 'react-redux';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { useHistory } from 'react-router-dom';
+import { getUser, getCollections } from '../../service/requests';
 
 // img
 import logo from '../../img/logo.svg';
@@ -11,29 +12,62 @@ import studentRole from '../../img/ico/studentRole.svg';
 import teacherRole from '../../img/ico/teacherRole.svg';
 import organizationRole from '../../img/ico/organizationRole.svg';
 
-import {
-   currentUser
-} from '../../actions/currentUser';
+import { currentUser } from '../../actions/currentUser';
+import { setCollections } from '../../actions/collections';
 
 const mapDispatchToProps = dispatch => ({
    currentUser: (payload) => {
       return dispatch(currentUser(payload));
+   },
+   setCollections: (payload) => {
+      return dispatch(setCollections(payload));
    }
 })
 
 const ChooseRole = (props) => {
 
+   const {
+      currentUser,
+      setCollections
+   } = props;
+
    const history = useHistory();
    const [role, setRole] = useState("");
    const [error, setError] = useState(false);
 
-   const onNext = () => {
+   const onNext = async () => {
 
       if(!role) {
          setError(true)
-         return
+         return;
       }
-      props.currentUser({user: {}});
+
+      //update role 
+
+      const resp = await getUser().catch(console.log);
+  
+         if(!resp) {
+            // set error
+            localStorage.removeItem("accessToken");
+            history.push("/login");
+            return;
+         } 
+        
+         currentUser({ user: resp.data.user });
+
+      const loadCollections = async () => {
+         try {
+           const res = await getCollections();
+           setCollections({ collections: res.data.collections })
+         }
+   
+         catch (error) {
+           console.log(error)
+         }
+       }
+
+      loadCollections();
+
       history.push("/");
    }
 
