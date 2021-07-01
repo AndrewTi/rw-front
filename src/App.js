@@ -2,7 +2,6 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-// import { useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 
 import './App.css'
@@ -47,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
   },
   setTags: (payload) => {
     return dispatch(setTags(payload));
-  },
+  }
 })
 
 function App(props) {

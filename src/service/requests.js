@@ -24,15 +24,18 @@ export const getUser        = () => axios.get(usersAPI + "me");
 export const checkAuth      = () => axios.get(usersAPI + "check");
 
 // COLLECTIONS API
-export const getCollections     = () => axios.get(collectionsAPI);
-export const getCollectionById     = (id) => axios.get(collectionsAPI + id);
-export const addCollectionReq      = (payload) => axios.post(collectionsAPI, payload);
-export const deleteCollectionReq   = (id) => axios.delete(collectionsAPI + id);
-export const updateCollectionReq   = (id) => axios.put(collectionsAPI + id);
+export const getCollections             = () => axios.get(collectionsAPI);
+export const getCollectionById          = (id) => axios.get(collectionsAPI + id);
+export const addCollectionReq           = (payload) => axios.post(collectionsAPI, payload);
+export const deleteCollectionReq        = (id) => axios.delete(collectionsAPI + id);
+export const updateCollectionReq        = (id, payload) => axios.put(collectionsAPI + id, payload);
+
+export const deleteTagsFromCollection   = (id, payload) => axios.delete(collectionsAPI + id + "/tags", payload)
+export const addTagsToCollection        = (id, payload) => axios.post(collectionsAPI + id + "/tags", payload)
 
 // TAGS API
-export const getTags = () => axios.get(tagsAPI);
+export const getTags        = () => axios.get(tagsAPI);
 export const getTagById     = (id) => axios.get(collectionsAPI + id);
-export const addTagReq = (payload) => axios.post(tagsAPI, payload)
+export const addTagReq      = (payload) => axios.post(tagsAPI, payload)
 export const deleteTagReq   = (id) => axios.delete(tagsAPI + id);
 export const updateTagReq   = (id) => axios.put(tagsAPI + id);

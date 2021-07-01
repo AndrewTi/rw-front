@@ -1,0 +1,47 @@
+.editCollection {
+   &__input {
+      border: 1px solid #eee;
+      border-radius: 7px;
+      padding: 10px 7px;
+      // color: #ddd;
+      outline: none;
+      margin-top: 5px;
+
+      &:focus {
+         border: 1px solid #bac0e6;
+      }
+
+      &::placeholder {
+         opacity: 0.3;
+         font-size: 14px;
+         // color
+      }
+   }
+
+   .MuiAutocomplete-inputRoot {
+      input {
+         outline: none;
+
+      }
+      
+      input::placeholder {
+         font-size: 15px;
+      }
+   }
+
+   .MuiAutocomplete-inputRoot.MuiOutlinedInput-root{
+      padding: 10px 5px 4px 5px;
+   }
+   
+   .MuiOutlinedInput-notchedOutline {
+      border: 1px solid #eee;
+      margin-top: 5px;
+      border-radius: 7px;
+   }
+
+   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-color: #bac0e6;
+      border-width: 2px;
+   }
+      
+}

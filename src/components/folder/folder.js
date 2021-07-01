@@ -39,7 +39,8 @@ const Folder = (props) => {
    const { 
       collection, 
       type,
-      deleteCollection
+      deleteCollection,
+      tags
     } = props;
 
    const [moreAction, setMoreAction] = React.useState(false);
@@ -75,9 +76,9 @@ const Folder = (props) => {
          return (
             <div className="text-dark flex flex-col justify-between h-36">
                <div className="absolute top-4 right-2" onClick={(e) => openMoreAction(e)}><MoreVertIcon className="moreActionBtn--open" /></div>
-               <div className="text-lg mt-2">{collection.name}</div>
+               <div className="text-lg mt-2">{props.name}</div>
                <div className="flex justify-between">
-                  <div className="text-sm text-gray font-light">{props.students} students</div>
+                  <div className="text-sm text-gray font-light">17 students</div>
                   <img src={rightBottomArrow} />
                </div>
             </div>
@@ -130,11 +131,11 @@ const Folder = (props) => {
                <div>
 
                   <hr className="border-t-1 border-lightGray mt-3" />
-                     <div className="flex mt-2.5">
+                     <div className="flex mt-2.5 flex-wrap">
                         {collection.tags.length > 0 
                         ? collection.tags.map(tag => {
                            return(
-                              <div className="bg-darkPurple px-3 py-1 text-white capitalize text-xs rounded-full mr-1.5">{tag.name}</div>
+                              <div className="mt-1 bg-darkPurple px-3 py-1 text-white capitalize text-xs rounded-full mr-1.5">{tag.name}</div>
                               )
                            })
                         : <div className="bg-lightGray px-3 py-1 text-white capitalize text-xs rounded-full mr-1.5">no tags</div>
@@ -197,24 +198,26 @@ const Folder = (props) => {
             ?
             <div className="moreAction cursor-default text-dark" ref={moreActionMenu} onClick={(e) => e.preventDefault()}>
                <div className="absolute top-3 right-2 cursor-pointer" onClick={(e) => closeMoreAction(e)}><CloseRoundedIcon /></div>
-               <div className="flex justify-between">
-                  <div className="moreAction__btn moreAction__btnEdit" onClick={() => props.openPopup({currentPopup: 'EditCollection'})}>
-                     <EditOutlinedIcon className="moreAction__icon moreAction__iconEdit" />
-                     <div className="moreAction__textEdit text-xs transition">Edit</div>
+               <div className="moreAction__buttons">
+                  <div className="flex justify-between">
+                     <div className="moreAction__btn moreAction__btnEdit" onClick={() => props.openPopup({ currentPopup: 'EditCollection', info: { collection: collection, allTags: tags } })}>
+                        <EditOutlinedIcon className="moreAction__icon moreAction__iconEdit" />
+                        <div className="moreAction__textEdit text-xs transition">Edit</div>
+                     </div>
+                     <div className="moreAction__btn moreAction__btnShare" onClick={() => props.openPopup({ currentPopup: 'ShareCollection' })}>
+                        <ScreenShareOutlinedIcon className="moreAction__icon moreAction__iconShare" />
+                        <div className="moreAction__textShare text-xs transition">Share</div>
+                     </div>
                   </div>
-                  <div className="moreAction__btn moreAction__btnShare" onClick={() => props.openPopup({currentPopup: 'ShareCollection'})}>
-                     <ScreenShareOutlinedIcon className="moreAction__icon moreAction__iconShare" />
-                     <div className="moreAction__textShare text-xs transition">Share</div>
-                  </div>
-               </div>
-               <div className="flex justify-between mt-5">
-                  <div className="moreAction__btn moreAction__btnLoad" onClick={() => props.openPopup({currentPopup: 'LoadCollection'})}>
-                     <SystemUpdateAltOutlinedIcon className="moreAction__icon moreAction__iconLoad" />
-                     <div className="moreAction__textLoad text-xs transition">Load</div>
-                  </div>
-                  <div className="moreAction__btn moreAction__btnDelete" onClick={onDeleteCollection}>
-                     <DeleteOutlineRoundedIcon className="moreAction__icon moreAction__iconDelete" />
-                     <div className="moreAction__textDelete text-xs transition">Delete</div>
+                  <div className="flex justify-between mt-5">
+                     <div className="moreAction__btn moreAction__btnLoad" onClick={() => props.openPopup({ currentPopup: 'LoadCollection' })}>
+                        <SystemUpdateAltOutlinedIcon className="moreAction__icon moreAction__iconLoad" />
+                        <div className="moreAction__textLoad text-xs transition">Load</div>
+                     </div>
+                     <div className="moreAction__btn moreAction__btnDelete" onClick={onDeleteCollection}>
+                        <DeleteOutlineRoundedIcon className="moreAction__icon moreAction__iconDelete" />
+                        <div className="moreAction__textDelete text-xs transition">Delete</div>
+                     </div>
                   </div>
                </div>
             </div>

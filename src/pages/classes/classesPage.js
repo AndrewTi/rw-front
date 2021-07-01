@@ -1,10 +1,18 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
+import { connect } from 'react-redux';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { NavLink } from "react-router-dom";
 import Folder from '../../components/folder/folder';
 
-
+const mapStateToProps = state => ({
+   ...state.collections
+ });
+ 
 const ClassesPage = (props) => {
+
+   const {
+      collections
+    } = props;
 
    return (
       <div className="mt-12">
@@ -13,16 +21,22 @@ const ClassesPage = (props) => {
             <ButtonBase><div className="px-5 py-1.5 bg-darkPurple text-white rounded-md cursor-pointer transition hover:bg-hoverPurple">Add Class</div></ButtonBase>
          </div>
          <div className="mx-5 lg:mx-14 mt-5 flex flex-wrap">
-            <NavLink to="/class">
-               <Folder name="class 5a" type="class" date="Apr 10, 2020" students="17" />
-            </NavLink>
-            <NavLink to="/class">
-               <Folder name="class 5a" type="class" date="Apr 10, 2020" students="17" />
-            </NavLink>
+
+            {collections.map(collection => {
+               return (
+                  <NavLink to="/class">
+                     <Folder name="5a" type="class" />
+                  </NavLink>
+               )
+            })}
+
          </div>
 
       </div>
    )
 }
 
-export default ClassesPage;
+export default connect(
+   mapStateToProps,
+   null
+ )(ClassesPage);

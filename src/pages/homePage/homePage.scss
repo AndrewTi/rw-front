@@ -1,3 +1,16 @@
+.homePage {
+
+   &__noCollAnimationWrapper {
+      width: 90%;
+      margin-top: 100px;
+   }
+
+   &__noCollAnimation {
+      width: 350px;
+      margin: 0 auto;
+   }
+}
+
 .progress-bar {
    width: 350px;
    background: #fff;

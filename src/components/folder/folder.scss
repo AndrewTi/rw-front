@@ -20,7 +20,7 @@
 
    &__tag {
       position: absolute;
-      top: -25px;
+      top: -24px;
       left: -6px;
    }
  }
@@ -36,6 +36,14 @@
    background: rgba(255, 255, 255, 0.507);
    padding:  40px 65px;
    transition: .2s ease-in-out;
+
+   &__buttons {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 45%;
+   }
  
    &__btn {
      display: flex;

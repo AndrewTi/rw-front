@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 
-import EditCollection from '../popups/editCollection';
+import EditCollection from '../popups/editCollection/editCollection';
 import ShareCollection from '../popups/shareCollection/shareCollection';
 import LoadCollection from '../popups/loadCollection/loadCollection';
 import AddStudent from '../popups/addStudent/addStudent';

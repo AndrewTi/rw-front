@@ -111,7 +111,7 @@ const CollectionsPage = (props) => {
             {collections.map(collection => {
                return (
                   <NavLink to="/collection1">
-                     <Folder collection={collection} type="collection" />
+                     <Folder collection={collection} type="collection" tags={tags}/>
                   </NavLink>
                   )
             })}
