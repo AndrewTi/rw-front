@@ -9,6 +9,7 @@ import './App.css'
 import Header from './components/header/header';
 import Menu from './components/menu/menu';
 import Popup from './components/popup/popup';
+import SelectionWindow from './components/selectionWindow/selectionWindow';
 
 
 import HomePage from './pages/homePage/homePage';
@@ -129,6 +130,7 @@ function App(props) {
               <Route path="/collection3" component={WordsPage} />
             </Switch>
 
+            <SelectionWindow />
             <Popup />
           </div>
         </div>

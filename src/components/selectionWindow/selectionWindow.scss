@@ -1,0 +1,47 @@
+.selectedPopup {
+   bottom: 30px;
+   left: 55%;
+   transform: translateX(-50%);
+   background: #6a75ca71;
+   backdrop-filter: blur(4px);
+   padding: 16px 32px;
+   display: flex;
+   color: #fff;
+   border-radius: 32px;
+   position: fixed;
+   align-items: center;
+   width: 577px;
+   justify-content: space-between;
+
+   &__closeBtn {
+      color: #fff;
+      padding: 0;
+   }
+
+   &__numberWords {
+      background: #6a75ca44;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-left: 18px;
+      max-width: 35px;
+      width: 28px;
+      text-align: center;
+   }
+
+   &__btn {
+      padding: 7px 20px 7px 15px;
+      background: #6A75CA;
+      transition: .2s ease-in-out;
+      cursor: pointer;
+      font-size: 12px;
+      margin-right: 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      margin-right: 24px;
+
+      &:hover {
+         background: darken($color:  #6A75CA, $amount: 10);
+      }
+   }
+}

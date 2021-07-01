@@ -16,3 +16,7 @@ export const SET_TAGS = "SET_TAGS";
 export const ADD_TAG = "ADD_TAG";
 export const UPDATE_TAG = "UPDATE_TAG";
 export const DELETE_TAG = "DELETE_TAG";
+
+// Selection Window
+export const OPEN_SELECTION_WINDOW = "OPEN_SELECTION_WINDOW";
+export const CLOSE_SELECTION_WINDOW = "CLOSE_SELECTION_WINDOW";
